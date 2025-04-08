@@ -1,0 +1,1 @@
+scp -O ~/Desktop/sasakilab/sample_rust_milkv/sample/target/riscv64gc-unknown-linux-musl/debug/sample root@192.168.42.1:/root

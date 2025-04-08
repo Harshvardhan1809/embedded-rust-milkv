@@ -1,0 +1,9 @@
+[package]
+name = "sample"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+i2cdev = "0.6.1"
+linux-embedded-hal = "0.3"
+mpu6050 = "0.1.6"

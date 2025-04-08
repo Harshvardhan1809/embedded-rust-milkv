@@ -1,0 +1,15 @@
+[build]
+target = "riscv64gc-unknown-linux-musl"
+
+[target.riscv64gc-unknown-linux-musl]
+rustflags = [
+	"-C", "target-feature=-crt-static",
+	"-C", "link-args=-lc",
+	"-C", "prefer-dynamic",
+	"-L", "/Users/harshvardhankedare/riscv-binaries/bin64linuxmusl/sysroot/lib",
+	"-L", "/Users/harshvardhankedare/riscv-binaries/bin64linuxmusl/lib/gcc/riscv64-unknown-linux-musl/14.2.0",
+	]
+linker = "/Users/harshvardhankedare/riscv-binaries/bin64linuxmusl/bin/riscv64-unknown-linux-musl-gcc"
+ar = "/Users/harshvardhankedare/riscv-binaries/bin64linuxmusl/bin/riscv64-unknown-linux-musl-ar"
+
+
