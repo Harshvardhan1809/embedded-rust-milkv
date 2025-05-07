@@ -5,5 +5,7 @@ edition = "2021"
 
 [dependencies]
 i2cdev = "0.6.1"
-linux-embedded-hal = "0.3"
+embedded-hal = "0.2.7"
+linux-embedded-hal = "0.3.2"
 mpu6050 = "0.1.6"
+shared-bus = "0.3.1"
