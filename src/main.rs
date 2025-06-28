@@ -51,5 +51,7 @@ fn main() -> Result<(), Mpu6050Error<LinuxI2CError>> {
         println!("acc: {:?}", acc);
     }
 
+    println!("5\n");
+
     Ok(())
 }
