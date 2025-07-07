@@ -7,8 +7,8 @@ edition = "2021"
 i2cdev = "0.6.1"
 embedded-hal = "1.0.0"
 linux-embedded-hal = "0.4.0"
-mpu6050 = { path = "/Users/harshvardhankedare/sasakilab/mpu6050" } # {git = "https://github.com/juliangaal/mpu6050", branch = "master"} #
+# mpu6050 = { path = "/Users/harshvardhankedare/sasakilab/mpu6050" } # {git = "https://github.com/juliangaal/mpu6050", branch = "master"} #
 # shared-bus = # { path = "/Users/harshvardhankedare/Desktop/sasakilab/shared-bus" }
 embedded-hal-bus = "0.3.0"
-libm = "0.2.15"
+libm = "0.2.1"
 nalgebra = "0.33.2"
