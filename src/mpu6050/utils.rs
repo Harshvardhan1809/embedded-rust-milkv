@@ -9,7 +9,8 @@ use libm::{powf, atan2f, sqrtf};
 use i2cdev::linux::LinuxI2CDevice;
 use i2cdev::core::I2CDevice;
 
-use crate::mpu6050::device::{AccelRange, ACCEL_CONFIG, GyroRange, GYRO_CONFIG, ACCEL_HPF, INT_STATUS, WHOAMI, PWR_MGMT_1, ACCEL_SENS, GYRO_SENS, ACC_REGX_H, TEMP_OFFSET, TEMP_SENSITIVITY, TEMP_OUT_H, GYRO_REGX_H};
+use crate::mpu6050::device::{ACC_REGX_H, TEMP_OFFSET, TEMP_SENSITIVITY, TEMP_OUT_H, GYRO_REGX_H};
+use crate::{ACCEL_SENS, GYRO_SENS, PWR_MGMT_1, WHOAMI, AccelRange, GyroRange, ACCEL_HPF, ACCEL_CONFIG, GYRO_CONFIG};
 use crate::mpu6050::bits;
 
 pub const PI: f32 = core::f32::consts::PI;
