@@ -414,6 +414,7 @@ impl From<u8> for AccelRange {
 
 impl AccelRange {
     // Converts accelerometer range to correction/scaling factor, see register sheet
+    #[allow(dead_code)]
     pub(crate) fn sensitivity(&self) -> f32 {
         match &self {
             AccelRange::G2 => ACCEL_SENS.0,
@@ -426,6 +427,7 @@ impl AccelRange {
 
 impl GyroRange {
     // Converts gyro range to correction/scaling factor, see register sheet
+    #[allow(dead_code)]
     pub(crate) fn sensitivity(&self) -> f32 {
         match &self {
             GyroRange::D250 => GYRO_SENS.0,

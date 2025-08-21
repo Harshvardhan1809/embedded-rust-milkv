@@ -1,8 +1,6 @@
 // https://github.com/ublox-rs/ublox/blob/1de591a894005117556cb2a5d523bbf63e88752a/examples/ublox-device/src/lib.rs
-use ublox::*;
-use std::time::Duration;
 use nmea_parser::*;
-
+use ublox::PacketRef;
 
 pub trait UbxPacketHandler {
     fn handle(&mut self, _packet: PacketRef<'_>) {}
@@ -17,7 +15,6 @@ impl<F: FnMut(PacketRef)> UbxPacketHandler for F {
 
 pub struct NEO6M {
     port: Box<dyn serialport::SerialPort>,
-    // parser: Parser<Vec<u8>>
     parser: NmeaParser,
 }
 
@@ -31,17 +28,16 @@ impl NEO6M {
         self.port.write_all(data)
     }
 
-    pub fn read_gps_data(&mut self) -> std::io::Result<()> {
+    pub fn read_gps_data(&mut self) -> std::io::Result<Vec<String>> {
 
-        const MAX_PAYLOAD_LEN: usize = 1240;
         let mut local_buf: Vec<u8> = vec![];
         self.read_port(&mut local_buf)?;
         if local_buf.len() == 0 {
             ()
         }
 
-        println!("GPS Parse Data");
         let sentences: Vec<&[u8]> = local_buf.split(|&e| e == b'\n').filter(|v| !v.is_empty()).collect();
+        let mut out: Vec<String> = vec![];
         for sentence in sentences {
             let mut nmea_sentence = std::str::from_utf8(&sentence).unwrap().to_string();
             nmea_sentence = nmea_sentence + "\n";
@@ -49,20 +45,19 @@ impl NEO6M {
             match self.parser.parse_sentence(&mut nmea_sentence) {
                 Ok(message) => match message {
                     ParsedMessage::Gga(gga) => {
-                        println!("GPS GGA DATA  Source: {}    Latitude: {:?}°    Longitude: {:?}°", gga.source, gga.latitude, gga.longitude);
+                        out.push(format!("{},{:?}°,{:?}°", gga.source, gga.latitude, gga.longitude));
                     },
                     ParsedMessage::Rmc(rmc) => {
-                        println!("GPS RMC DATA  Source: {}    Speed: {:?} kts    Bearing: {:?}°", rmc.source, rmc.sog_knots, rmc.bearing);
+                        out.push(format!("{},{:?}kts,{:?}°", rmc.source, rmc.sog_knots, rmc.bearing));
                     },
                     _ => ()
                 },
                 Err(_) => {
-                    println!("GPS Parse Error");
                 }
             };
 
         }
-        Ok(())
+        return Ok(out);
     }
 
     /// Reads the serial port, converting timeouts into "no data received"

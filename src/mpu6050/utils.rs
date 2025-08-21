@@ -41,7 +41,6 @@ impl Mpu6050 {
     pub fn read_slave_addr(&self) -> Result<(), ()> {
         let address = self.i2c.borrow_mut().smbus_read_byte_data(WHOAMI).unwrap();
         thread::sleep(Duration::from_millis(100));
-        println!("Address : {}", address);
         if address != 0x68 {
             // panic
             println!("Wrong slave address");
@@ -51,12 +50,12 @@ impl Mpu6050 {
     }
 
     pub fn init(&self) {
-        self.set_accel_range(AccelRange::G2);
-        self.set_gyro_range(GyroRange::D250);
-        self.set_accel_hpf(ACCEL_HPF::_RESET);
+        let _ = self.set_accel_range(AccelRange::G2);
+        let _ = self.set_gyro_range(GyroRange::D250);
+        let _ = self.set_accel_hpf(ACCEL_HPF::_RESET);
     }
 
-    pub fn write_read(&self, address: u8, write: &[u8], read: &mut [u8]) -> Result<(), ()> {
+    pub fn write_read(&self, _address: u8, write: &[u8], read: &mut [u8]) -> Result<(), ()> {
 
         self.i2c.borrow_mut().write(write).unwrap();
         Ok(self.i2c.borrow_mut().read(read).unwrap())
@@ -158,10 +157,7 @@ impl Mpu6050 {
 
         Ok(gyro)
     }
-
-
 }
-
 
 #[cfg(test)]
 mod tests {

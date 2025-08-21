@@ -53,10 +53,10 @@ impl Default for Opts {
 }
 
 pub struct PowerMonitor {
-    Shunt: String,
-    Voltage: String,
-    Current: String,
-    Power: String,
+    pub Shunt: String,
+    pub Voltage: String,
+    pub Current: String,
+    pub Power: String,
 }
 
 impl PowerMonitor {

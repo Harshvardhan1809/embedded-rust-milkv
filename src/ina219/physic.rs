@@ -466,7 +466,7 @@ fn atod(s: &str) -> (decimal, usize, PhysicError) {
 // physic unit. It can be used when characters of the units do not conflict with
 // any of the SI prefixes.
 fn valueOfUnitString(s: &str, base: prefix) -> (i64, usize, PhysicError) {
-    let str_copy = s.clone();
+    let str_copy = s;
     let (d, mut n, err) = atod(str_copy);
     if err != PhysicError::Null {
         return (0, n, err);
@@ -575,7 +575,7 @@ impl PhysicPowerSet for Power {
     fn setPower(str: &str) -> Result<Self::T, Self::E> {
         let (v, n, err) = valueOfUnitString(str, Nano);
         let err_copy = err.clone();
-        let str_copy = str.clone();
+        let str_copy = str;
         if err != PhysicError::Null {
             let val = Option::Some(err);
             match val {
@@ -636,7 +636,7 @@ impl PhysicElectricCurrentSet for ElectricCurrent {
     fn setCurrent(str: &str) -> Result<Self::T, Self::E> {
         let (v, n, err) = valueOfUnitString(str, Nano);
         let err_copy = err.clone();
-        let str_copy = str.clone();
+        let str_copy = str;
         if err != PhysicError::Null {
             let val = Option::Some(err);
             match val {
@@ -701,7 +701,7 @@ impl PhysicElectricResistanceSet for ElectricResistance {
     fn setResistance(str: &str) -> Result<Self::T, Self::E> {
         let (v, n, err) = valueOfUnitString(str, Nano);
         let err_copy = err.clone();
-        let str_copy = str.clone();
+        let str_copy = str;
         if err != PhysicError::Null {
             let val = Option::Some(err);
             match val {
@@ -765,7 +765,7 @@ impl PhysicElectricPotentialSet for ElectricPotential {
     fn setVoltage(str: &str) -> Result<Self::T, Self::E> {
         let (v, n, err) = valueOfUnitString(str, Nano);
         let err_copy = err.clone();
-        let str_copy = str.clone();
+        let str_copy = str;
         if err != PhysicError::Null {
             let val = Option::Some(err);
             match val {

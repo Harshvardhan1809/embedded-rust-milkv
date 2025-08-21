@@ -1,13 +1,9 @@
-#![no_std]
-
 // use embedded_hal::blocking::delay::DelayNs;
 // use embedded_hal::digital::v2::{InputPin, OutputPin};
 
 use linux_embedded_hal::CdevPin;
 use embedded_hal::digital::{InputPin, OutputPin};
 use embedded_hal::delay::DelayNs;
-use linux_embedded_hal::gpio_cdev::LineRequestFlags;
-use gpio_cdev::LineDirection;
 
 use crate::one_wire_bus::address::Address;
 use crate::one_wire_bus::commands;
